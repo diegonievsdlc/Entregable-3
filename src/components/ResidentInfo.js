@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 
-const Card = ({link}) => {
+const ResidentInfo = ({link}) => {
     const [info, setInfo] = useState()
     
     useEffect(() => {
@@ -27,4 +27,4 @@ const Card = ({link}) => {
     );
 };
 
-export default Card;
+export default ResidentInfo;

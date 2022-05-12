@@ -2,9 +2,10 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import './App.css';
+import title from './assets/image 2.png'
 //Import components
-import NavigationBar from './components/NavigationBar';
-import Content from './components/Content';
+import Location from './components/Location';
+import ResidentInfo from './components/ResidentInfo';
 
 function App() {
   const [locationData, setLocationData] = useState({})
@@ -24,18 +25,46 @@ function App() {
   }, [])
 
   return (
-    <div className="App">
-      <NavigationBar />
+    <>
+      <header>
+        <img src={title} alt="Title" />
+      </header>
+      <div className='browser'>
+            <div className="search">
+                <input type="text" placeholder='Search for' required/>
+                <button className="btn">
+                    <i className='bx bx-search-alt-2'></i>
+                </button>
+            </div>
+        </div>
+      <Location name={locationData.name} type={locationData.type} dimension={locationData.dimension} population={locationData.residents?.length}/>
       {
         load ? (
           <div className="load">
             <img src="https://media2.giphy.com/media/McIBYFNF5pkayHj6vl/200.gif" alt="Load" />
           </div>
         ) : (
-          <Content name={locationData.name} type={locationData.type} dimension={locationData.dimension} population={locationData.residents?.length} residentEndPoint={residentEndPoint}/>
+          <div className='card-sealer'>     
+            {
+              residentEndPoint.length <= 0 ? (
+                <h1 className='message'>There are no inhabitants in these lands</h1> 
+              ) : (
+                residentEndPoint.map(endPoint => (
+                          <ResidentInfo link={endPoint} key={endPoint}/>
+                      ))
+              )
+            }
+          </div>
         )
       }
-    </div>
+      <div className="change-page">
+        <button></button>
+        <button></button>
+        <button></button>
+        <button></button>
+        <button></button>
+      </div>
+    </>
   );
 }
 
