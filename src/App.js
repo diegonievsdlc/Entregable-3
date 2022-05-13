@@ -12,8 +12,7 @@ function App() {
   const [locationData, setLocationData] = useState({})
   const [residentEndPoint, setResidentEndPoint] = useState([])
   const [load, setLoad] = useState(true)
-  const [input, setInput] = useState(Math.floor(Math.random() * 126))
-
+  const [input, setInput] = useState('')
   const [curretPage, setCurretPage] = useState(1)
   const [postsPerPage] = useState(12)
 
@@ -29,17 +28,16 @@ function App() {
   }, [])
 
   const searchLocation = () => {
-    axios.get(`https://rickandmortyapi.com/api/location/${input}`)
-        .then(res => {
-          setLocationData(res.data)
-          setResidentEndPoint(res.data.residents)
-          setTimeout(() => {
-            setLoad(false)
-          }, 1000)
-        })
-        .catch(error => console.error(error))
+    axios.get(`https://rickandmortyapi.com/api/location/?name=${input.replaceAll(' ', '&')}`)
+      .then(res => {
+        setLocationData(res.data.results[0])
+        setResidentEndPoint(res.data.results[0].residents)
+        setTimeout(() => {
+          setLoad(false)
+        }, 1000)
+      })
+    setCurretPage(1)
   }
-
 
   const indexOfLastPost = curretPage * postsPerPage
   const indexOfFirstPost = indexOfLastPost - postsPerPage
@@ -75,8 +73,8 @@ function App() {
                 <h1 className='message'>There are no inhabitants in these lands</h1> 
               ) : (
                 currentPosts.map(endPoint => (
-                          <ResidentInfo link={endPoint} key={endPoint}/>
-                      ))
+                  <ResidentInfo link={endPoint} key={endPoint}/>
+                ))
               )
             }
           </div>
