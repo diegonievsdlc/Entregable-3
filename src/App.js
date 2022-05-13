@@ -12,7 +12,7 @@ function App() {
   const [locationData, setLocationData] = useState({})
   const [residentEndPoint, setResidentEndPoint] = useState([])
   const [load, setLoad] = useState(true)
-  const [input, setInput] = useState('')
+  const [input, setInput] = useState(Math.floor(Math.random() * 126))
 
   const [curretPage, setCurretPage] = useState(1)
   const [postsPerPage] = useState(12)
@@ -26,7 +26,6 @@ function App() {
           setLoad(false)
         }, 1000)
       })
-      .catch(error => console.error(error))
   }, [])
 
   const searchLocation = () => {
