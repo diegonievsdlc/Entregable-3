@@ -128,6 +128,15 @@ body{
 .card img{
   width: 100px;
 }
+.status{
+  display: flex;
+  gap: 20px;
+}
+.card span{
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
 .info{
   display: flex;
   flex-direction: column;
@@ -149,6 +158,12 @@ body{
   font-size: 13px;
   color: gray;
 }
+.alive{
+  background-color: green;
+}
+.death{
+  background-color: red;
+}
 /*Change Page*/
 .change-page{
   width: 100%;
@@ -158,7 +173,8 @@ body{
   align-items: center;
   gap: 20px;
 }
-.change-page button{
+.change-page a{
+  display: block;
   background-color: #062226;
   color: #fff;
   font-size: 1rem;
@@ -180,10 +196,10 @@ body{
   }
 }
 @media (min-width: 1000px) {
-  header{
+  .header{
     height: 30vh;
   }
-  header img{
+  .header img{
     width: 45%;
   }
   .search{

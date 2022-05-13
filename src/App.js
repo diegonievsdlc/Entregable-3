@@ -6,12 +6,16 @@ import title from './assets/image 2.png'
 //Import components
 import Location from './components/Location';
 import ResidentInfo from './components/ResidentInfo';
+import Pagination from './components/Pagination';
 
 function App() {
   const [locationData, setLocationData] = useState({})
   const [residentEndPoint, setResidentEndPoint] = useState([])
   const [load, setLoad] = useState(true)
   const [input, setInput] = useState('')
+
+  const [curretPage, setCurretPage] = useState(1)
+  const [postsPerPage] = useState(12)
 
   useEffect(() => {
     axios.get(`https://rickandmortyapi.com/api/location/${Math.floor(Math.random() * 126)}`)
@@ -36,6 +40,16 @@ function App() {
         })
         .catch(error => console.error(error))
   }
+
+
+  const indexOfLastPost = curretPage * postsPerPage
+  const indexOfFirstPost = indexOfLastPost - postsPerPage
+  const currentPosts = residentEndPoint.slice(indexOfFirstPost, indexOfLastPost)
+
+  const paginate = (pageNumber) => {
+    setCurretPage(pageNumber)
+  }
+
   return (
     <>
       <div className='header'>
@@ -58,10 +72,10 @@ function App() {
         ) : (
           <div className='card-sealer'>     
             {
-              residentEndPoint.length <= 0 ? (
+              currentPosts.length <= 0 ? (
                 <h1 className='message'>There are no inhabitants in these lands</h1> 
               ) : (
-                residentEndPoint.map(endPoint => (
+                currentPosts.map(endPoint => (
                           <ResidentInfo link={endPoint} key={endPoint}/>
                       ))
               )
@@ -69,13 +83,7 @@ function App() {
           </div>
         )
       }
-      <div className="change-page">
-        <button>1</button>
-        <button>2</button>
-        <button>3</button>
-        <button>4</button>
-        <button>5</button>
-      </div>
+      <Pagination postsPerPage={postsPerPage} totalPosts={residentEndPoint.length} paginate={paginate}/>
     </>
   );
 }

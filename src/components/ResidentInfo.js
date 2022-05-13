@@ -15,7 +15,10 @@ const ResidentInfo = ({link}) => {
             <img src={info?.image} alt="Img" />
             <div className="info">
                 <h2>{info?.name}</h2>
-                <p>{info?.status} - {info?.species}</p>
+                <div className="status">
+                    <span className={info?.status === 'Alive' ? 'alive' : 'death'}></span>
+                    <p>{info?.status} - {info?.species}</p>
+                </div>
                 <dl>
                     <dt>Last known location:</dt>
                     <dd>{info?.origin.name}</dd>
