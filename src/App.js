@@ -11,6 +11,7 @@ function App() {
   const [locationData, setLocationData] = useState({})
   const [residentEndPoint, setResidentEndPoint] = useState([])
   const [load, setLoad] = useState(true)
+  const [input, setInput] = useState('')
 
   useEffect(() => {
     axios.get(`https://rickandmortyapi.com/api/location/${Math.floor(Math.random() * 126)}`)
@@ -24,19 +25,30 @@ function App() {
       .catch(error => console.error(error))
   }, [])
 
+  const searchLocation = () => {
+    axios.get(`https://rickandmortyapi.com/api/location/${input}`)
+        .then(res => {
+          setLocationData(res.data)
+          setResidentEndPoint(res.data.residents)
+          setTimeout(() => {
+            setLoad(false)
+          }, 1000)
+        })
+        .catch(error => console.error(error))
+  }
   return (
     <>
-      <header>
+      <div className='header'>
         <img src={title} alt="Title" />
-      </header>
+      </div>
       <div className='browser'>
             <div className="search">
-                <input type="text" placeholder='Search for' required/>
-                <button className="btn">
+                <input type="text" placeholder='Search for' onChange={e => setInput(e.target.value)} value={input} required/>
+                <button className="btn" onClick={searchLocation}>
                     <i className='bx bx-search-alt-2'></i>
                 </button>
             </div>
-        </div>
+      </div>
       <Location name={locationData.name} type={locationData.type} dimension={locationData.dimension} population={locationData.residents?.length}/>
       {
         load ? (
@@ -58,11 +70,11 @@ function App() {
         )
       }
       <div className="change-page">
-        <button></button>
-        <button></button>
-        <button></button>
-        <button></button>
-        <button></button>
+        <button>1</button>
+        <button>2</button>
+        <button>3</button>
+        <button>4</button>
+        <button>5</button>
       </div>
     </>
   );
