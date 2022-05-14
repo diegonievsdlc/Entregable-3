@@ -12,7 +12,7 @@ const Pagination = ({cardsPerPage, totalCards, paginate}) => {
                     <a 
                         onClick={() => paginate(number)} 
                         key={number} 
-                        href="!#">{number}
+                        href="/">{number}
                     </a>
                 ))
             }
