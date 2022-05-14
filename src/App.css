@@ -154,7 +154,6 @@ body{
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background-color: gray;
 }
 .info{
   display: flex;
@@ -182,6 +181,9 @@ body{
 }
 .death{
   background-color: red;
+}
+.unknown{
+  background-color: grey;
 }
 /*Change Page*/
 .change-page{

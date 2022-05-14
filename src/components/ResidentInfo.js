@@ -16,7 +16,7 @@ const ResidentInfo = ({link}) => {
                     <span className={
                         info?.status === 'Alive' ? 
                             'alive' : info?.status === 'Dead' ?
-                                 'death' : '' 
+                                 'death' : 'unknown' 
                     }></span>
                     <p>{info?.status} - {info?.species}</p>
                 </div>
