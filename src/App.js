@@ -8,6 +8,7 @@ import namesLocations from './namesLocations.json'
 import Location from './components/Location';
 import ResidentInfo from './components/ResidentInfo';
 import Pagination from './components/Pagination';
+import Question from './components/Question';
 
 function App() {
   const [locationData, setLocationData] = useState({})
@@ -71,6 +72,14 @@ function App() {
     setSuggestions([])
   }
 
+
+//sugefw
+  const [si, setSi] = useState(false)
+
+  const openAndClose = () => {
+    setSi(!si)
+  }
+
   return (
     <>
       <div className='header'>
@@ -112,6 +121,12 @@ function App() {
         )
       }
       <Pagination postsPerPage={postsPerPage} totalPosts={residentEndPoint.length} paginate={paginate}/>
+      <button onClick={ openAndClose} className='question-btn'><i className='bx bx-question-mark'></i></button>
+      {
+        si ? (
+          <Question lol={openAndClose}/>
+        ) : ('') 
+      }
     </>
   );
 }
