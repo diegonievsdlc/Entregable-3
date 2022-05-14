@@ -40,7 +40,7 @@ body{
   padding: 5px;
 }
 .search input{
-  width: 0px;
+  width: 240px;
   height: 40px;
   padding: 0 20px;
   font-size: 14px;
@@ -64,12 +64,6 @@ body{
   border-radius: 50%;
   border: none;
   cursor: pointer;
-}
-.search:hover input{
-  width: 240px;
-}
-.search input:focus{
-  width: 240px;
 }
 .suggetions{
   background-color: #062226;
@@ -207,6 +201,7 @@ body{
   padding: 10px 15px;
   border-radius: 50%;
   border: none;
+  cursor: pointer;
 }
 /*Question*/
 .question-btn{

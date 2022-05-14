@@ -12,12 +12,6 @@ const Question = ({openAndClose}) => {
                     Esto se arreglara en la V2.0 
                 </dd>
 
-                <dt>¿En la version movil me da un error al intentar buscar?</dt>
-                <dd>
-                    No te da un error, el problema es que para ecrribir tienes que apretar el boton de busqueda que este a la vez se usa al para realizar dicha accion, entonces estarias buscando algo vacio, para solucionarlo en la version movil puedes mantener presiona el boton. PSDT: En la version de escritorio solo nesecitas pasar el mouse por encima del boton.<br></br>
-                    Esto probablemente se arregle en la V2.0
-                </dd>
-
                 <dt>¿No puedo realizar mi busqueda?</dt>
                 <dd>
                     Probablemente sea por que escribes un caracter incorrecto, trata de que lo que busques te aparesca en la barra de sugerencias la cual solo filtra caracteres parecidos. Ejemplo:
