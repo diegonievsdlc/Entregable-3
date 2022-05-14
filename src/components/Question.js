@@ -15,6 +15,9 @@ const Question = ({openAndClose}) => {
                 </dd>
 
                 <dt>Valoren la pagina, en especial las sugerencias de busqueda, me dolio mucho hacer el JSON. </dt>
+                <dd>
+                    Esta seccion se quitara cuando logre llegar al correcto filtrado de las sugerencias, hasta entonces ¡Hola mundo!
+                </dd>
             </dl>
         </div>
     );
