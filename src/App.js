@@ -40,11 +40,11 @@ function App() {
           }, 1000)
           setLoad(true)
         }
-        
       }
     })
     setCurretPage(1)
     setInput('')
+    setSuggestions([])
   }
   //Pagination
   const [curretPage, setCurretPage] = useState(1)
