@@ -13,7 +13,7 @@ const ResidentInfo = ({link}) => {
             <div className="info">
                 <h2>{info?.name}</h2>
                 <div className="status">
-                    <span className={info?.status === 'Alive' ? 'alive' : 'death'}></span>
+                    <span className={info?.status === 'Alive' ? 'alive' : (info?.status === 'Dead' ? 'death': '' )}></span>
                     <p>{info?.status} - {info?.species}</p>
                 </div>
                 <dl>
