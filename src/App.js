@@ -31,12 +31,17 @@ function App() {
   const searchLocation = () => {
     axios.get(`https://rickandmortyapi.com/api/location/?name=${input.replaceAll(' ', '&')}`)
     .then(res => {
-      setLocationData(res.data.results[0])
-      setResidentEndPoint(res.data.results[0].residents)
-      setTimeout(() => {
-        setLoad(false)
-      }, 1000)
-      setLoad(true)
+      for (let i = 0; i < res.data.results.length; i++) {
+        if(res.data.results[i].name === input){
+          setLocationData(res.data.results[i])
+          setResidentEndPoint(res.data.results[i].residents)
+          setTimeout(() => {
+            setLoad(false)
+          }, 1000)
+          setLoad(true)
+        }
+        
+      }
     })
     setCurretPage(1)
     setInput('')

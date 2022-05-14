@@ -6,12 +6,6 @@ const Question = ({openAndClose}) => {
             <button onClick={openAndClose}>X</button>
             <h2>Preguntas Frecuentes</h2>
             <dl>
-                <dt>¿No todas las sugerencias de busqueda funcionan?</dt>
-                <dd>
-                    Esto se debe a que la website aun esta en desarrollo y no, la barra de sugerencias no se equivoca, el problema es que la API arroja una lista de objetos parecidos y no encontrè la forma de seleccionar el que queremos. Esto solo pasa con algunas busquedas.<br></br>
-                    Esto se arreglara en la V2.0 
-                </dd>
-
                 <dt>¿No puedo realizar mi busqueda?</dt>
                 <dd>
                     Probablemente sea por que escribes un caracter incorrecto, trata de que lo que busques te aparesca en la barra de sugerencias la cual solo filtra caracteres parecidos. Ejemplo:
@@ -19,6 +13,8 @@ const Question = ({openAndClose}) => {
                     Esto no se arreglara en la V2.0<br></br>
                     Pero muy probablemente subiremos una guia de busqueda
                 </dd>
+
+                <dt>Valoren la pagina, en especial las sugerencias de busqueda, me dolio mucho hacer el JSON. </dt>
             </dl>
         </div>
     );
