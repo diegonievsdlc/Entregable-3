@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import './App.css';
 import title from './assets/image 2.png'
+import namesLocations from './namesLocations.json'
 //Import components
 import Location from './components/Location';
 import ResidentInfo from './components/ResidentInfo';
@@ -17,7 +18,7 @@ function App() {
   const [postsPerPage] = useState(12)
 
   useEffect(() => {
-    axios.get(`https://rickandmortyapi.com/api/location/${Math.floor(Math.random() * 126)}`)
+    axios.get(`https://rickandmortyapi.com/api/location/${Math.floor(Math.random() * 126)+1}`)
       .then(res => {
         setLocationData(res.data)
         setResidentEndPoint(res.data.residents)
@@ -28,15 +29,18 @@ function App() {
   }, [])
 
   const searchLocation = () => {
+    console.log(input)
     axios.get(`https://rickandmortyapi.com/api/location/?name=${input.replaceAll(' ', '&')}`)
-      .then(res => {
+    .then(res => {
         setLocationData(res.data.results[0])
         setResidentEndPoint(res.data.results[0].residents)
         setTimeout(() => {
           setLoad(false)
         }, 1000)
+        setLoad(true)
       })
     setCurretPage(1)
+    setInput('')
   }
 
   const indexOfLastPost = curretPage * postsPerPage
@@ -47,18 +51,45 @@ function App() {
     setCurretPage(pageNumber)
   }
 
+  //search
+  const [suggestions, setSuggestions] = useState([])
+
+  const onChangeHandler = (text) => {
+    let matches = []
+    if (text.length > 0) {
+      matches = namesLocations.filter(name => {
+        const regex = new RegExp(`${text}`)
+        return name.name.match(regex)
+      })
+    }
+    setSuggestions(matches)
+    setInput(text)
+  }
+
+  const selectedSuggestion = (text) => {
+    setInput(text)
+    setSuggestions([])
+  }
+
   return (
     <>
       <div className='header'>
         <img src={title} alt="Title" />
       </div>
       <div className='browser'>
-            <div className="search">
-                <input type="text" placeholder='Search for' onChange={e => setInput(e.target.value)} value={input} required/>
-                <button className="btn" onClick={searchLocation}>
-                    <i className='bx bx-search-alt-2'></i>
-                </button>
-            </div>
+        <div className="search">
+          <input type="text" placeholder='Search for Location' onChange={e => onChangeHandler(e.target.value)} value={input}/>
+          <button className="btn" onClick={searchLocation}>
+              <i className='bx bx-search-alt-2'></i>
+          </button>
+        </div>
+        <ul className='suggetions'>
+          {
+            suggestions && suggestions.map(suggestion => (
+              <li onClick={() => selectedSuggestion(suggestion.name)} key={suggestion.name} >{suggestion.name}</li>
+            ))
+          }
+        </ul>
       </div>
       <Location name={locationData.name} type={locationData.type} dimension={locationData.dimension} population={locationData.residents?.length}/>
       {

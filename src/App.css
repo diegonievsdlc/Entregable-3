@@ -28,21 +28,22 @@ body{
 }
 /*Buscador*/
 .browser{
-  width: 100%;
+  width: 80%;
   height: 80px;
-  position: static;
+  position: relative;
+  display: flex;justify-content: center;align-items: flex-end;
+  margin: auto;
 }
 .search{
   position: absolute;
-  top: 110px;
-  left: 60px;
+  top: 10px;
   padding: 5px;
 }
 .search input{
   width: 0px;
   height: 40px;
   padding: 0 20px;
-  font-size: 18px;
+  font-size: 14px;
   color: #000;
   outline: none;
   border: 1px solid #062226;
@@ -69,6 +70,28 @@ body{
 }
 .search input:focus{
   width: 240px;
+}
+.suggetions{
+  background-color: #062226;
+  width: 240px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  position: absolute;
+  top: 70px;
+  border: 1px solid #fff;
+}
+.suggetions li{
+  padding: 10px;
+  border-bottom: 1px solid #fff;
+  color: #fff;
+  cursor: pointer;
+}
+.suggetions li:hover{
+  background-color: #0d3b42;
 }
 /*Location information*/
 .location-information{
@@ -187,14 +210,16 @@ body{
 /*Responsive*/
 @media (min-width: 800px) {
   .search{
-    top: 175px;
-    left: 50px;
+    top: 10px;
   }
   .card-sealer{
     grid-template-columns: repeat(3, auto);
   }
   .card{
     width: 250px;
+  }
+  .change-page{
+    grid-template-columns: repeat(10, auto);
   }
 }
 @media (min-width: 1000px) {
@@ -205,8 +230,7 @@ body{
     width: 45%;
   }
   .search{
-    top: 215px;
-    left: 80px;
+    top: 10px;
   }
   .card-sealer{
     grid-template-columns: repeat(4, auto);

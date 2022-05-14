@@ -5,8 +5,7 @@ const ResidentInfo = ({link}) => {
     const [info, setInfo] = useState()
     
     useEffect(() => {
-        const uwu = link
-        axios.get(uwu)
+        axios.get(link)
             .then(res => setInfo(res.data))
     }, [link])
 
