@@ -9,11 +9,11 @@ const Pagination = ({cardsPerPage, totalCards, paginate}) => {
         <div className="change-page">
             {
                 pageNumbers.map(number => (
-                    <a 
+                    <button
                         onClick={() => paginate(number)} 
-                        key={number} 
-                        href="/">{number}
-                    </a>
+                        key={number}>
+                            {number}
+                    </button>
                 ))
             }
         </div>

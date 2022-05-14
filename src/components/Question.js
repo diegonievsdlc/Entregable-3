@@ -18,12 +18,6 @@ const Question = ({openAndClose}) => {
                     Esto probablemente se arregle en la V2.0
                 </dd>
 
-                <dt>¿En la version movil al intentar cambiar de pagina me arroja Page Not Found?</dt>
-                <dd>
-                    No se tiene un concepto del porque pasa eso, pero sabemos que si pasa. PSDT: En la version de escritorio todo bien.<br></br>
-                    Esto es muy probable que no se arregle en la V2.0
-                </dd>
-
                 <dt>¿No puedo realizar mi busqueda?</dt>
                 <dd>
                     Probablemente sea por que escribes un caracter incorrecto, trata de que lo que busques te aparesca en la barra de sugerencias la cual solo filtra caracteres parecidos. Ejemplo:

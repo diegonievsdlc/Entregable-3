@@ -199,7 +199,7 @@ body{
   grid-template-columns: repeat(5, auto);
   gap: 20px;
 }
-.change-page a{
+.change-page button{
   display: block;
   background-color: #062226;
   color: #fff;
