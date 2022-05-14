@@ -11,13 +11,9 @@ import Pagination from './components/Pagination';
 import Question from './components/Question';
 
 function App() {
-  const [locationData, setLocationData] = useState({})
   const [residentEndPoint, setResidentEndPoint] = useState([])
-  const [load, setLoad] = useState(true)
-  const [input, setInput] = useState('')
-  const [curretPage, setCurretPage] = useState(1)
-  const [postsPerPage] = useState(12)
-
+  //GetLocation
+  const [locationData, setLocationData] = useState({})
   useEffect(() => {
     axios.get(`https://rickandmortyapi.com/api/location/${Math.floor(Math.random() * 126)+1}`)
       .then(res => {
@@ -28,33 +24,34 @@ function App() {
         }, 1000)
       })
   }, [])
-
+  //LoadingLetters
+  const [load, setLoad] = useState(true)
+  //Seeker
+  const [input, setInput] = useState('')
   const searchLocation = () => {
-    console.log(input)
     axios.get(`https://rickandmortyapi.com/api/location/?name=${input.replaceAll(' ', '&')}`)
     .then(res => {
-        setLocationData(res.data.results[0])
-        setResidentEndPoint(res.data.results[0].residents)
-        setTimeout(() => {
-          setLoad(false)
-        }, 1000)
-        setLoad(true)
-      })
+      setLocationData(res.data.results[0])
+      setResidentEndPoint(res.data.results[0].residents)
+      setTimeout(() => {
+        setLoad(false)
+      }, 1000)
+      setLoad(true)
+    })
     setCurretPage(1)
     setInput('')
   }
-
-  const indexOfLastPost = curretPage * postsPerPage
-  const indexOfFirstPost = indexOfLastPost - postsPerPage
-  const currentPosts = residentEndPoint.slice(indexOfFirstPost, indexOfLastPost)
-
+  //Pagination
+  const [curretPage, setCurretPage] = useState(1)
+  const [cardsPerPage] = useState(12)
+  const indexOfLastCard = curretPage * cardsPerPage
+  const indexOfFirstCard = indexOfLastCard - cardsPerPage
+  const currentPosts = residentEndPoint.slice(indexOfFirstCard, indexOfLastCard)
   const paginate = (pageNumber) => {
     setCurretPage(pageNumber)
   }
-
-  //search
+  //SearchSuggestions
   const [suggestions, setSuggestions] = useState([])
-
   const onChangeHandler = (text) => {
     let matches = []
     if (text.length > 0) {
@@ -66,20 +63,15 @@ function App() {
     setSuggestions(matches)
     setInput(text)
   }
-
   const selectedSuggestion = (text) => {
     setInput(text)
     setSuggestions([])
   }
-
-
-//sugefw
-  const [si, setSi] = useState(false)
-
+  //FrequentQuestions
+  const [question, setQuestion] = useState(false)
   const openAndClose = () => {
-    setSi(!si)
+    setQuestion(!question)
   }
-
   return (
     <>
       <div className='header'>
@@ -87,7 +79,12 @@ function App() {
       </div>
       <div className='browser'>
         <div className="search">
-          <input type="text" placeholder='Search for Location' onChange={e => onChangeHandler(e.target.value)} value={input}/>
+          <input 
+            type="text" 
+            placeholder='Search for Location' 
+            onChange={e => onChangeHandler(e.target.value)} 
+            value={input}
+          />
           <button className="btn" onClick={searchLocation}>
               <i className='bx bx-search-alt-2'></i>
           </button>
@@ -95,12 +92,21 @@ function App() {
         <ul className='suggetions'>
           {
             suggestions && suggestions.map(suggestion => (
-              <li onClick={() => selectedSuggestion(suggestion.name)} key={suggestion.name} >{suggestion.name}</li>
+              <li 
+                onClick={() => selectedSuggestion(suggestion.name)}
+                key={suggestion.name}>
+                  {suggestion.name}
+              </li>
             ))
           }
         </ul>
       </div>
-      <Location name={locationData.name} type={locationData.type} dimension={locationData.dimension} population={locationData.residents?.length}/>
+      <Location 
+        name={locationData.name} 
+        type={locationData.type} 
+        dimension={locationData.dimension} 
+        population={locationData.residents?.length}
+      />
       {
         load ? (
           <div className="load">
@@ -120,15 +126,22 @@ function App() {
           </div>
         )
       }
-      <Pagination postsPerPage={postsPerPage} totalPosts={residentEndPoint.length} paginate={paginate}/>
-      <button onClick={ openAndClose} className='question-btn'><i className='bx bx-question-mark'></i></button>
+      <Pagination 
+        cardsPerPage={cardsPerPage} 
+        totalCards={residentEndPoint.length} 
+        paginate={paginate}
+      />
+      <button 
+        onClick={ openAndClose} 
+        className='question-btn'>
+          <i className='bx bx-question-mark'></i>
+      </button>
       {
-        si ? (
-          <Question lol={openAndClose}/>
+        question ? (
+          <Question openAndClose={openAndClose}/>
         ) : ('') 
       }
     </>
   );
 }
-
 export default App;

@@ -3,12 +3,10 @@ import React, { useEffect, useState } from 'react';
 
 const ResidentInfo = ({link}) => {
     const [info, setInfo] = useState()
-    
     useEffect(() => {
         axios.get(link)
             .then(res => setInfo(res.data))
     }, [link])
-
     return (
         <div className="card">
             <img src={info?.image} alt="Img" />

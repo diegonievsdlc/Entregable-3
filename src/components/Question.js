@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Question = ({lol}) => {
+const Question = ({openAndClose}) => {
     return (
         <div className='question'>
-            <button onClick={lol}>x</button>
+            <button onClick={openAndClose}>X</button>
             <h2>Preguntas Frecuentes</h2>
             <dl>
                 <dt>¿No todas las sugerencias de busqueda funcionan?</dt>

@@ -1,5 +1,3 @@
-import React from 'react';
-
 const Location = ({name, type, dimension, population}) => {
     return (
         <div className='location-information'>

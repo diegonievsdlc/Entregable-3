@@ -26,7 +26,7 @@ body{
 .header img{
   width: 50%;
 }
-/*Buscador*/
+/*Seeker*/
 .browser{
   width: 80%;
   height: 80px;
@@ -93,7 +93,7 @@ body{
 .suggetions li:hover{
   background-color: #0d3b42;
 }
-/*Location information*/
+/*Location*/
 .location-information{
   width: 90%;
   margin: auto;
@@ -131,12 +131,13 @@ body{
   grid-template-columns: repeat(2, auto);
   gap: 10px;
 }
+/*Message*/
 .message{
   text-align: center;
   margin-top: 100px;
   color: #fff;
 }
-/*card*/
+/*Card*/
 .card{
   width: 170px;
   height: 280px;
@@ -207,7 +208,7 @@ body{
   border-radius: 50%;
   border: none;
 }
-/*question-btn*/
+/*Question*/
 .question-btn{
   font-size: 1.4rem;
   color: #fff;
@@ -232,6 +233,7 @@ body{
   align-items: center;
   gap: 30px;
   padding: 50px;
+  overflow: scroll;
 }
 .question button{
   border: none;
@@ -265,6 +267,9 @@ body{
   }
   .change-page{
     grid-template-columns: repeat(10, auto);
+  }
+  .question{
+    overflow: hidden;
   }
 }
 @media (min-width: 1000px) {
